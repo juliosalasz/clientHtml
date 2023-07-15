@@ -1,0 +1,383 @@
+:root {
+  --brand-bg: #fcfcfc;
+  --temp-bg-hot: #ffc736;
+  --temp-bg-cold: #00c2ff;
+  --calc-bg-active: #64fa8e;
+  --calc-bg-inactive: #dcdcdc;
+  --result-bg: #4262d1;
+  --nav-title-bg: #522b65;
+
+  --font-black: black;
+  --font-grey: #505050;
+  --font-blue-anaquel: #dce1ff;
+
+  --nav-title: 24px;
+}
+
+/* Main Structure */
+
+body {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+.column-left,
+.column-right {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  flex: 1;
+}
+
+.result {
+  background-color: var(--result-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--font-blue-anaquel);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* reusable elements*/
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--font-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: lighter;
+}
+
+.comp-padding {
+  padding: 40px;
+}
+
+/* font Style */
+
+.heading {
+  font-size: 20px;
+  font-weight: lighter;
+}
+/*nav*/
+#nav {
+  background-color: var(--nav-title-bg);
+  width: 100%;
+}
+
+.nav {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--brand-bg);
+}
+
+/*Brand Form*/
+
+.brand {
+  width: 100%;
+  flex: 1;
+}
+
+.brandForm {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--brand-bg);
+  gap: 20px;
+}
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand-input-name {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--font-grey);
+  padding: 20px;
+  font-size: 48px;
+  font-weight: 200;
+  color: var(--font-grey);
+  background: var(--brand-bg);
+  transition: padding-bottom 0.5s ease;
+}
+
+.brand-input-name:focus {
+  outline: none;
+  padding-bottom: 30px;
+  color: var(--font-grey);
+}
+
+.radio-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.line-sep {
+  border-right: 2px solid #b0b0b0;
+}
+.line-sep-green {
+  border-right: 2px solid #4c7a50;
+}
+.radio-choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 40px 0;
+  background-color: var(--calc-bg-inactive);
+}
+.radio-choice input[type="radio"] {
+  display: none;
+}
+.radio-choice label {
+  font-size: 36px;
+  font-weight: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.radio-choice label::before {
+  display: block;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border: 3px solid black;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.radio-choice input[type="radio"]:checked + label::before {
+  height: 16px;
+  width: 16px;
+  border: 10px solid black;
+}
+
+.radio-choice.active {
+  background-color: var(--calc-bg-active);
+}
+/* Temperature component*/
+
+.temperature {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--temp-bg-cold);
+  flex: 1;
+}
+
+.fakeBack {
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
+.rangeSlider {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  -webkit-transition: 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.inTitle {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sliderNumber {
+  text-align: center;
+}
+
+.sliderInterface {
+  z-index: 99;
+  position: relative;
+}
+.sliders {
+  position: relative;
+}
+.range {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  width: 420px;
+  height: 2px;
+  background: black;
+  border: none;
+  outline: none;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #ededed;
+  cursor: pointer;
+  border: 3px solid #000;
+}
+.range::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #ededed;
+  cursor: pointer;
+  border: 3px solid #000;
+}
+
+.sliderends {
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 1;
+  top: 7px;
+}
+.end {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: black;
+}
+
+#rangeValue {
+  font-size: 128px;
+  font-weight: 200;
+}
+.temp {
+  font-size: 64px;
+}
+.numbers {
+  display: flex;
+  padding-top: 30px;
+  justify-content: space-between;
+}
+
+/* Confirm component  */
+
+.calculation {
+  background-color: var(--calc-bg-active);
+  width: 100%;
+}
+
+.calculate-button {
+  background: none;
+  padding: 15px 40px;
+  font-size: 36px;
+  border-radius: 19px;
+  border: 3px solid black;
+}
+.calculate-button:hover {
+  background-color: black;
+  color: var(--calc-bg-active);
+}
+
+.calculation-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*Result component */
+.result-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bold-message {
+  font-weight: 700;
+}
+
+.cal-message {
+  text-align: left;
+  font-size: 96px;
+  font-weight: 300;
+}
+.result-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.result-message {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+}
+.result-intro {
+  font-size: 48px;
+  font-weight: 300;
+}
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result-text {
+  font-size: 40px;
+}
+
+.result-display {
+  display: flex;
+  flex-direction: column;
+}
+.result-bold {
+  font-size: 96px;
+  font-weight: bold;
+}
+
+.y {
+  font-size: 96px;
+  text-align: center;
+  font-weight: bold;
+}

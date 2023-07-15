@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/reset.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>AnaTime - Tiempo de vida de Anaquel</title>
+  </head>
+  <body>
+    <main class="wrapper">
+      <section id="form" class="mainContainer column-left form">
+        <section id="nav">
+          <div class="nav comp-padding"><h1>ANATIME</h1></div>
+        </section>
+        <form class="form-container">
+          <section id="brand" class="brand">
+            <div class="brandForm comp-padding">
+              <div class="brand-title">
+                <div><div class="step-number">1</div></div>
+                <h2 class="heading">Nombre de la marca y tipo del producto</h2>
+              </div>
+              <div class="brandInput">
+                <input
+                  type="text"
+                  id="bname"
+                  name="bname"
+                  placeholder="Nombre..."
+                  value=""
+                  class="brand-input-name"
+                  oninput="{brandName(this.value)}"
+                />
+              </div>
+            </div>
+            <div class="radio-button">
+              <div id="line" class="radio-choice line-sep">
+                <input
+                  type="radio"
+                  id="arroz"
+                  name="type"
+                  value="arroz"
+                  onclick="{typeChoice('arroz')}"
+                />
+                <label for="arroz">Arroz</label>
+              </div>
+              <div class="radio-choice">
+                <input
+                  type="radio"
+                  id="cafe"
+                  name="type"
+                  value="cafe"
+                  onclick="{typeChoice('cafe')}"
+                />
+                <label for="cafe">Café</label>
+              </div>
+            </div>
+          </section>
+          <section id="temp" class="temperature">
+            <div id="rangeSlider" class="fakeBack comp-padding">
+              <div class="rangeSlider">
+                <div class="brand-title">
+                  <div><div class="step-number">2</div></div>
+                  <h2 class="heading">Temperatura de almacenamiento</h2>
+                </div>
+                <div class="content">
+                  <div class="sliderNumber">
+                    <span id="rangeValue">5</span><span class="temp">°C</span>
+                  </div>
+                  <div class="sliders">
+                    <div class="sliderends">
+                      <div class="end"></div>
+                      <div class="end"></div>
+                    </div>
+                    <div class="sliderInterface">
+                      <input
+                        type="range"
+                        name=""
+                        value="5"
+                        min="5"
+                        max="80"
+                        oninput="rangeValue.innerText = this.value"
+                        class="range"
+                        onchange="rangeSlide(this.value, this.min, this.max)"
+                      />
+                    </div>
+                    <div class="numbers">
+                      <span>5°C</span>
+                      <span>80°C</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="calc" class="calculation">
+            <div class="calculation-container comp-padding">
+              <div><div class="step-number">3</div></div>
+              <button
+                type="button"
+                onclick="{calculate()}"
+                class="calculate-button"
+              >
+                Calcular
+              </button>
+            </div>
+          </section>
+        </form>
+      </section>
+
+      <modal></modal>
+      <section id="result" class="mainContainer column-right result">
+        <div class="result-container">
+          <div id="resultMessage" class="comp-padding">
+            <!-- <div class="result-wrapper">
+              <div class="result-message">
+                <p class="result-intro">
+                  EL TIEMPO DE VIDA DE TU PRODUCTO DE LA MARCA
+                  <span class="bold-message">COSTEÑO</span>
+                </p>
+                <div class="results">
+                  <p class="result-text">Es de</p>
+                  <div class="result-display">
+                    <h3 class="result-bold">3.6 Meses</h3>
+                    <p class="result-text">en polietileno de alta densidad</p>
+                  </div>
+                  <h3 class="y">Y</h3>
+                  <div class="result-display">
+                    <h3 class="result-bold">3.6 Meses</h3>
+                    <p class="result-text">en polietileno de baja densidad.</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <h3 class="cal-message">
+              <span class="bold-message">Calcula</span><br />
+              el tiempo de vida, de tu <br /><span class="bold-message"
+                >anaquel.</span
+              >
+            </h3>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="text/javascript" src="./src/script.js"></script>
+  </body>
+</html>
