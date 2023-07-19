@@ -87,3 +87,5 @@ function calculate() {
   </div>
 </div>`;
 }
+
+console.log("GIT");
