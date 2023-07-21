@@ -5,68 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./src/reset.css" />
     <link rel="stylesheet" href="./src/style.css" />
     <title>AnaTime - Tiempo de vida de Anaquel</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   </head>
-  <body>
-    <main class="wrapper">
-      <section id="form" class="mainContainer column-left form">
-        <section id="nav">
-          <div class="nav comp-padding"><h1>ANATIME</h1></div>
-        </section>
-        <form class="form-container">
-          <section id="brand" class="brand">
-            <div class="brandForm comp-padding">
-              <div class="brand-title">
-                <div><div class="step-number">1</div></div>
-                <h2 class="heading">Nombre de la marca y tipo del producto</h2>
-              </div>
-              <div class="brandInput">
-                <input
-                  type="text"
-                  id="bname"
-                  name="bname"
-                  placeholder="Nombre..."
-                  value=""
-                  class="brand-input-name"
-                  oninput="{brandName(this.value)}"
-                />
-              </div>
-            </div>
-            <div class="radio-button">
-              <div id="line" class="radio-choice line-sep">
-                <input
-                  type="radio"
-                  id="arroz"
-                  name="type"
-                  value="arroz"
-                  onclick="{typeChoice('arroz')}"
-                />
-                <label for="arroz">Arroz</label>
-              </div>
-              <div class="radio-choice">
-                <input
-                  type="radio"
-                  id="cafe"
-                  name="type"
-                  value="cafe"
-                  onclick="{typeChoice('cafe')}"
-                />
-                <label for="cafe">Café</label>
-              </div>
-            </div>
-          </section>
-          <section id="temp" class="temperature">
-            <div id="rangeSlider" class="fakeBack comp-padding">
+  <body class="background-app">
+    <!-- Form HTML -->
+    <div
+      id="rangeSlider"
+      class="py-3 py-md-5 sliderback d-flex align-items-center"
+    >
+      <div class="p-3 p-md-5 main-container container-sm rounded shadow">
+        <div class="pb-4 title">
+          <h1>ANATIME</h1>
+          <h3>Calculate your product shelf time</h3>
+        </div>
+        <form class="px-2 px-md-4 pt-3 d-flex flex-column gap-4">
+          <div class="form-group d-flex flex-column gap-3">
+            <label for="bname" class="label-form d-flex align-items-center"
+              ><div class="step-number">1</div>
+              Brand Name</label
+            >
+            <input
+              type="text"
+              class="form-control input-background p-3"
+              id="bname"
+              name="bname"
+              aria-describedby="emailHelp"
+              value=""
+              placeholder="Brand Name"
+              oninput="{brandName(this.value)}"
+            />
+            <small id="brand-error" class="form-text text-danger brand-miss"
+              >Please add a brand name.</small
+            >
+          </div>
+          <div class="form-group d-flex flex-column gap-3">
+            <label class="label-form d-flex align-items-center"
+              ><div class="step-number">2</div>
+              Type of Product</label
+            >
+            <select
+              class="form-control select-background p-3"
+              id="select-product"
+              onchange="getSelectValue(this.value)"
+            >
+              <option selected value="null">Choose your type of product</option>
+              <option value="rice">Rice</option>
+              <option value="coffee">Coffee</option>
+            </select>
+            <small id="type-error" class="form-text text-danger brand-miss"
+              >Please choose a type of product</small
+            >
+          </div>
+          <div class="form-group d-flex flex-column gap-3">
+            <label class="label-form d-flex align-items-center"
+              ><div class="step-number">3</div>
+              Storage temperature</label
+            >
+            <div class="fakeBack comp-padding rounded">
               <div class="rangeSlider">
-                <div class="brand-title">
-                  <div><div class="step-number">2</div></div>
-                  <h2 class="heading">Temperatura de almacenamiento</h2>
-                </div>
                 <div class="content">
                   <div class="sliderNumber">
                     <span id="rangeValue">5</span><span class="temp">°C</span>
@@ -79,7 +91,7 @@
                     <div class="sliderInterface">
                       <input
                         type="range"
-                        name=""
+                        name="temperature"
                         value="5"
                         min="5"
                         max="80"
@@ -96,58 +108,73 @@
                 </div>
               </div>
             </div>
-          </section>
-          <section id="calc" class="calculation">
-            <div class="calculation-container comp-padding">
-              <div><div class="step-number">3</div></div>
-              <button
-                type="button"
-                onclick="{calculate()}"
-                class="calculate-button"
-              >
-                Calcular
-              </button>
-            </div>
-          </section>
-        </form>
-      </section>
-
-      <modal></modal>
-      <section id="result" class="mainContainer column-right result">
-        <div class="result-container">
-          <div id="resultMessage" class="comp-padding">
-            <!-- <div class="result-wrapper">
-              <div class="result-message">
-                <p class="result-intro">
-                  EL TIEMPO DE VIDA DE TU PRODUCTO DE LA MARCA
-                  <span class="bold-message">COSTEÑO</span>
-                </p>
-                <div class="results">
-                  <p class="result-text">Es de</p>
-                  <div class="result-display">
-                    <h3 class="result-bold">3.6 Meses</h3>
-                    <p class="result-text">en polietileno de alta densidad</p>
-                  </div>
-                  <h3 class="y">Y</h3>
-                  <div class="result-display">
-                    <h3 class="result-bold">3.6 Meses</h3>
-                    <p class="result-text">en polietileno de baja densidad.</p>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
-            <h3 class="cal-message">
-              <span class="bold-message">Calcula</span><br />
-              el tiempo de vida, de tu <br /><span class="bold-message"
-                >anaquel.</span
-              >
-            </h3>
           </div>
-        </div>
-      </section>
-    </main>
+          <button
+            type="button"
+            class="btn py-3 btn-calculate shadow"
+            onclick="{calculate()}"
+          >
+            Calculate
+          </button>
+        </form>
+      </div>
+    </div>
 
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="resultModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalLabel"
+      aria-hidden="true"
+    ></div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script type="text/javascript" src="./src/script.js"></script>
   </body>
 </html>
+
+<!-- 
+
+  <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="result-intro p-4">
+              BRAND:
+              <span class="bold-message">COSTEÑO</span>
+            </p>
+          </div>
+          <div class="modal-body">
+            <div class="result-message p-4">
+              <div class="d-flex flex-column gap-4">
+                <h3 class="result-bold">You product shelf life is:</h3>
+                <p class="result-text">
+                  <span class="result-bold">3.6 Months</span> in high density
+                  polyethylene.
+                </p>
+                <p class="result-text">
+                  <span class="result-bold">3.6 Months</span> in low density
+                  polyethylene.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+-->
