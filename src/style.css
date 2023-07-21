@@ -2,8 +2,9 @@
   --brand-bg: #fcfcfc;
   --temp-bg-hot: #ffc736;
   --temp-bg-cold: #00c2ff;
-  --calc-bg-active: #64fa8e;
-  --calc-bg-inactive: #dcdcdc;
+  --calc-bg-active: #58e992;
+  --calc-bg-hover: #36d676;
+  --calc-bg-inactive: #f2f2f2;
   --result-bg: #4262d1;
   --nav-title-bg: #522b65;
 
@@ -18,178 +19,91 @@
 
 body {
   font-family: "Inter", sans-serif;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-}
-.wrapper {
-  width: 100%;
-  height: auto;
-  display: flex;
-}
-.column-left,
-.column-right {
-  width: 50%;
-  height: 100%;
-  box-sizing: border-box;
 }
 
-.mainContainer {
-  flex: 1;
+.background-app {
+  background-color: var(--temp-bg-cold);
+}
+.sliderback {
+  min-height: 100vh;
+  width: auto;
 }
 
-.result {
-  background-color: var(--result-bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: var(--font-blue-anaquel);
+/*Main container*/
+.main-container {
+  background-color: var(--brand-bg);
+  max-width: 650px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
+.title h1 {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.form-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+/* FORM*/
+
+.input-background {
+  background-color: var(--calc-bg-inactive);
+  color: var(--font-black);
+}
+.input-background:focus {
+  background-color: var(--calc-bg-inactive);
+}
+.label-form {
+  font-size: 1.4rem;
+}
+
+.select-background {
+  background-color: var(--calc-bg-inactive);
+  color: var(--font-black);
+  font-weight: normal;
+}
+
+.select-background:focus {
+  background-color: var(--calc-bg-inactive);
+}
+.brand-miss {
+  display: none;
+}
+
+.brand-miss.active {
+  display: block;
+}
+
+.btn-calculate {
+  font-size: 1.5rem;
+  color: var(--font-black);
+  background-color: var(--calc-bg-active);
+  border: none;
+}
+.btn-calculate:hover {
+  color: var(--font-black);
+  background-color: var(--calc-bg-hover);
+}
+.btn-calculate:active {
+  color: var(--font-black);
+  background-color: var(--calc-bg-active);
 }
 
 /* reusable elements*/
 
 .step-number {
-  width: 60px;
-  height: 60px;
+  margin-right: 7px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 1px solid var(--font-black);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 32px;
-  font-weight: lighter;
+  font-size: 15px;
+  font-weight: normal;
 }
 
 .comp-padding {
   padding: 40px;
 }
 
-/* font Style */
-
-.heading {
-  font-size: 20px;
-  font-weight: lighter;
-}
-/*nav*/
-#nav {
-  background-color: var(--nav-title-bg);
-  width: 100%;
-}
-
-.nav {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--brand-bg);
-}
-
-/*Brand Form*/
-
-.brand {
-  width: 100%;
-  flex: 1;
-}
-
-.brandForm {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--brand-bg);
-  gap: 20px;
-}
-.brand-title {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.brand-input-name {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid var(--font-grey);
-  padding: 20px;
-  font-size: 48px;
-  font-weight: 200;
-  color: var(--font-grey);
-  background: var(--brand-bg);
-  transition: padding-bottom 0.5s ease;
-}
-
-.brand-input-name:focus {
-  outline: none;
-  padding-bottom: 30px;
-  color: var(--font-grey);
-}
-
-.radio-button {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.line-sep {
-  border-right: 2px solid #b0b0b0;
-}
-.line-sep-green {
-  border-right: 2px solid #4c7a50;
-}
-.radio-choice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  padding: 40px 0;
-  background-color: var(--calc-bg-inactive);
-}
-.radio-choice input[type="radio"] {
-  display: none;
-}
-.radio-choice label {
-  font-size: 36px;
-  font-weight: 200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.radio-choice label::before {
-  display: block;
-  content: "";
-  height: 30px;
-  width: 30px;
-  border: 3px solid black;
-  border-radius: 50%;
-  margin-right: 20px;
-}
-
-.radio-choice input[type="radio"]:checked + label::before {
-  height: 16px;
-  width: 16px;
-  border: 10px solid black;
-}
-
-.radio-choice.active {
-  background-color: var(--calc-bg-active);
-}
 /* Temperature component*/
 
 .temperature {
@@ -241,7 +155,7 @@ body {
 .range {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
-  width: 420px;
+  width: 250px;
   height: 2px;
   background: black;
   border: none;
@@ -270,14 +184,37 @@ body {
 }
 
 .sliderends {
-  padding-left: 2px;
-  padding-right: 2px;
-  width: 420px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
   position: absolute;
   z-index: 1;
-  top: 7px;
+  top: 6px;
+}
+
+@media (min-width: 375px) {
+  .sliderends {
+    width: 300px;
+  }
+  .range {
+    width: 300px;
+  }
+}
+@media (min-width: 425px) {
+  .sliderends {
+    width: 350px;
+  }
+  .range {
+    width: 350px;
+  }
+}
+@media (min-width: 576px) {
+  .sliderends {
+    width: 420px;
+  }
+  .range {
+    width: 420px;
+  }
 }
 .end {
   width: 15px;
@@ -296,31 +233,6 @@ body {
 .numbers {
   display: flex;
   padding-top: 30px;
-  justify-content: space-between;
-}
-
-/* Confirm component  */
-
-.calculation {
-  background-color: var(--calc-bg-active);
-  width: 100%;
-}
-
-.calculate-button {
-  background: none;
-  padding: 15px 40px;
-  font-size: 36px;
-  border-radius: 19px;
-  border: 3px solid black;
-}
-.calculate-button:hover {
-  background-color: black;
-  color: var(--calc-bg-active);
-}
-
-.calculation-container {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -346,7 +258,6 @@ body {
 }
 
 .result-message {
-  width: 80%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -354,17 +265,12 @@ body {
   gap: 50px;
 }
 .result-intro {
-  font-size: 48px;
+  font-size: 1.8rem;
   font-weight: 300;
-}
-.results {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .result-text {
-  font-size: 40px;
+  font-size: 2rem;
 }
 
 .result-display {
@@ -372,7 +278,7 @@ body {
   flex-direction: column;
 }
 .result-bold {
-  font-size: 96px;
+  font-size: 2rem;
   font-weight: bold;
 }
 
